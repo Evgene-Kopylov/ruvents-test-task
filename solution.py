@@ -42,23 +42,26 @@ def task_3(vals):
         vals[i] = ''.join([j for j in vals[i] if j in '.0123456789'])
     return len([x for x in vals if float(x) < 0.5])
 
-num3_ans = task_3(vals)
 
+num3_ans = task_3(vals)
 
 # 4 Столько вторников в этом столбце?
 vals = df[4].values
-# # Mon Aug  6 07:11:19 2018
-# for date in vals:
-#     datetime_object = datetime.strptime(date, '%A %B  %d %H:%M:%S %Y')
 num4_ans = len([x for x in vals if 'Thu' in x])
 
 # 5 Сколько вторников в этом столбце?
 # 2026-07-19 08:15:41.695463
 vals = df[5].values
-for i in range(len(vals)):
-    vals[i] = datetime.strptime(vals[i], '%Y-%m-%d %H:%M:%S.%f')
-    vals[i] = vals[i].weekday()
-num5_ans = len([x for x in vals if x == 1])
+
+
+def task_5(vals):
+    for i in range(len(vals)):
+        vals[i] = datetime.strptime(vals[i], '%Y-%m-%d %H:%M:%S.%f')
+        vals[i] = vals[i].weekday()
+    return len([x for x in vals if x == 1])
+
+
+num5_ans = task_5(vals)
 
 # Сколько последних вторников месяца в этом столбце?
 vals = df[6].values

@@ -72,7 +72,6 @@ vals = df[6].values
 def task_6(vals):
     num6_ans = 0
     for i in range(len(vals)):
-        print(vals[i])
         vals[i] = datetime.strptime(vals[i], '%m-%d-%Y')
         month_len = calendar.monthrange(vals[i].year, vals[i].month)[1]
         if month_len - vals[i].day < 7:

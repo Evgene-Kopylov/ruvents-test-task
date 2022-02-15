@@ -1,13 +1,19 @@
 from datetime import datetime
 import calendar
+
 import pandas as pd
 
-# , index_col=['num1', 'num2', 'num3', 'date1', 'date2', 'date3']
 df = pd.read_csv('tasks.csv', header=None, skiprows=2)
 
 # 1 Сколько четных чисел в этом столбце?
 vals = df[1].values
-num1_ans = len([x for x in vals if x % 2 == 0])
+
+
+def task_1(vals):
+    return len([x for x in vals if x % 2 == 0])
+
+
+num1_ans = task_1(vals)
 
 # 2 Сколько простых чисел в этом столбце?
 vals = df[2].values
@@ -26,13 +32,18 @@ def is_prime(num):
 
 num2_ans = len([x for x in vals if is_prime(x)])
 
-
 # 3 Сколько чисел, меньших 0.5 в этом столбце?
 vals = df[3].values
-for i in range(len(vals)):
-    vals[i].replace(',', '.')
-    vals[i] = ''.join([x for x in vals[i] if x in '.0123456789'])
-num3_ans = len([x for x in vals if float(x) < 0.5])
+
+
+def task_3(vals):
+    for i in range(len(vals)):
+        vals[i] = vals[i].replace(',', '.')
+        vals[i] = ''.join([j for j in vals[i] if j in '.0123456789'])
+    return len([x for x in vals if float(x) < 0.5])
+
+num3_ans = task_3(vals)
+
 
 # 4 Столько вторников в этом столбце?
 vals = df[4].values
@@ -41,7 +52,6 @@ vals = df[4].values
 #     datetime_object = datetime.strptime(date, '%A %B  %d %H:%M:%S %Y')
 num4_ans = len([x for x in vals if 'Thu' in x])
 
-
 # 5 Сколько вторников в этом столбце?
 # 2026-07-19 08:15:41.695463
 vals = df[5].values
@@ -49,7 +59,6 @@ for i in range(len(vals)):
     vals[i] = datetime.strptime(vals[i], '%Y-%m-%d %H:%M:%S.%f')
     vals[i] = vals[i].weekday()
 num5_ans = len([x for x in vals if x == 1])
-
 
 # Сколько последних вторников месяца в этом столбце?
 vals = df[6].values
@@ -61,9 +70,6 @@ for i in range(len(vals)):
     if month_len - vals[i].day < 7:
         num6_ans += 1
 
-
-
-
 if __name__ == "__main__":
     print(num1_ans)
     print(num2_ans)
@@ -71,4 +77,3 @@ if __name__ == "__main__":
     print(num4_ans)
     print(num5_ans)
     print(num6_ans)
-

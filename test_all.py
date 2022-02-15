@@ -1,7 +1,7 @@
 from datetime import datetime
 
 import pytest
-from solution import task_1, is_prime, task_3, task_5
+from solution import task_1, is_prime, task_3, task_5, task_6
 
 
 def test_task_1():
@@ -24,3 +24,8 @@ def test_task_5():
     assert task_5(vals) == 1
 
 
+def test_task_6():
+    # 8 - 01 - 2013
+    # vals = ['01-16-2021', '02-15-2022', '02-22-2022', '02-29-2022']
+    vals = ['01-16-2021', '02-15-2022', '02-22-2022']
+    assert task_6(vals) == 1

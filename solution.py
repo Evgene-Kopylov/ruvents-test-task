@@ -65,13 +65,22 @@ num5_ans = task_5(vals)
 
 # Сколько последних вторников месяца в этом столбце?
 vals = df[6].values
+
+
 # 10-04-2011
-num6_ans = 0
-for i in range(len(vals)):
-    vals[i] = datetime.strptime(vals[i], '%m-%d-%Y')
-    month_len = calendar.monthrange(vals[i].year, vals[i].month)[1]
-    if month_len - vals[i].day < 7:
-        num6_ans += 1
+
+def task_6(vals):
+    num6_ans = 0
+    for i in range(len(vals)):
+        print(vals[i])
+        vals[i] = datetime.strptime(vals[i], '%m-%d-%Y')
+        month_len = calendar.monthrange(vals[i].year, vals[i].month)[1]
+        if month_len - vals[i].day < 7:
+            num6_ans += 1
+    return num6_ans
+
+
+num6_ans = task_6(vals)
 
 if __name__ == "__main__":
     print(num1_ans)
